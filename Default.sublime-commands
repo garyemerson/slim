@@ -1,0 +1,10 @@
+[
+    {
+        "caption": "Slim: Toggle",
+        "command": "foo"
+    },
+    {
+        "caption": "Slim: bar",
+        "command": "bar"
+    }
+]
