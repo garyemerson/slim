@@ -7,7 +7,7 @@ window_settings = {}
 def print_debug(msg):
     print(msg)
 
-class ToggleFullCommand(sublime_plugin.TextCommand):
+class UnfocusCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         ToggleViewCommand(self.view).unslim()
         ToggleWindowCommand(self.view).unslim()

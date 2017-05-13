@@ -12,7 +12,7 @@
         "command": "focus"
     },
     {
-        "caption": "Slim: Toggle Full",
-        "command": "toggle_full"
+        "caption": "Slim: Unfocus",
+        "command": "unfocus"
     }
 ]
