@@ -4,19 +4,13 @@ import sublime_plugin
 view_settings = {}
 window_settings = {}
 
-def printd(msg):
+def print_debug(msg):
     print(msg)
 
 class ToggleFullCommand(sublime_plugin.TextCommand):
     def run(self, edit):
-        self.view.settings().set('line_numbers', True)
-        self.view.settings().set('gutter', True)
-
-        self.view.window().set_menu_visible(True)
-        # self.view.window().set_sidebar_visible(True)
-        self.view.window().set_tabs_visible(True)
-        self.view.window().set_status_bar_visible(True)
-        self.view.window().set_minimap_visible(True)
+        ToggleViewCommand(self.view).unslim()
+        ToggleWindowCommand(self.view).unslim()
 
 class FocusCommand(sublime_plugin.TextCommand):
     def run(self, edit):
@@ -26,19 +20,19 @@ class FocusCommand(sublime_plugin.TextCommand):
 class ToggleViewCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         if self.view.id() in view_settings and view_settings[self.view.id()]['slimmed']:
-            printd('unslimming view {}'.format(self.view.id()))
+            print_debug('unslimming view {}'.format(self.view.id()))
             self.unslim()
         else:
-            printd('slimming view {}'.format(self.view.id()))
+            print_debug('slimming view {}'.format(self.view.id()))
             self.slim()
 
     def slim(self):
         if not self.view.id() in view_settings:
-            printd('encountered new view {}'.format(self.view.id()))
+            print_debug('encountered new view {}'.format(self.view.id()))
             view_settings[self.view.id()] = {'slimmed': False, 'line': None, 'gutter': None}
         curr_settings = view_settings[self.view.id()]
         if curr_settings['slimmed']:
-            printd('view {} already slimmed, aborting'.format(self.view.id()))
+            print_debug('view {} already slimmed, aborting'.format(self.view.id()))
             return
 
         curr_settings['line'] = self.view.settings().get('line_numbers')
@@ -56,19 +50,19 @@ class ToggleViewCommand(sublime_plugin.TextCommand):
 class ToggleWindowCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         if self.view.window().id() in window_settings and window_settings[self.view.window().id()]['slimmed']:
-            printd('unslimming window {}'.format(self.view.window().id()))
+            print_debug('unslimming window {}'.format(self.view.window().id()))
             self.unslim()
         else:
-            printd('slimming window {}'.format(self.view.window().id()))
+            print_debug('slimming window {}'.format(self.view.window().id()))
             self.slim()
 
     def slim(self):
         if not self.view.window().id() in window_settings:
-            printd('encountered new window {}'.format(self.view.window().id()))
+            print_debug('encountered new window {}'.format(self.view.window().id()))
             window_settings[self.view.window().id()] = {'slimmed': False, 'menu': None, 'sidebar': None, 'tabs': None, 'status': None, 'minimap': None}
         curr_settings = window_settings[self.view.window().id()]
         if curr_settings['slimmed']:
-            printd('window {} already slimmed, aborting'.format(self.view.window().id()))
+            print_debug('window {} already slimmed, aborting'.format(self.view.window().id()))
             return
 
         curr_settings['menu'] = self.view.window().is_menu_visible()
