@@ -1,1 +1,1 @@
-[[focused.png]]
+![focused](focused.png)
