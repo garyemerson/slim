@@ -9,8 +9,14 @@ def print_debug(msg):
 
 class UnfocusCommand(sublime_plugin.TextCommand):
     def run(self, edit):
-        ToggleViewCommand(self.view).unslim()
-        ToggleWindowCommand(self.view).unslim()
+        try:
+            ToggleViewCommand(self.view).unslim()
+        except Exception as e:
+            print_debug(e)
+        try:
+            ToggleWindowCommand(self.view).unslim()
+        except Exception as e:
+            print_debug(e)
 
 class FocusCommand(sublime_plugin.TextCommand):
     def run(self, edit):
