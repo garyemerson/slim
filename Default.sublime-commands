@@ -1,18 +1,10 @@
 [
     {
-        "caption": "Slim: Toggle View",
-        "command": "toggle_view"
-    },
-    {
-        "caption": "Slim: Toggle Window",
-        "command": "toggle_window"
-    },
-    {
         "caption": "Slim: Focus",
         "command": "focus"
     },
     {
         "caption": "Slim: Unfocus",
         "command": "unfocus"
-    }
+    },
 ]
